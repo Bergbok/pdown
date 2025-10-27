@@ -1,0 +1,12 @@
+/api/
+/artifacts/
+/build/
+/dist/
+/downloads/
+/node_modules/
+/types/
+*.log
+*.tgz
+cookies.txt
+pdown-*/
+test.*
