@@ -1,0 +1,40 @@
+{
+	"compilerOptions": {
+		// Type Checking
+		"alwaysStrict": true,
+		"noFallthroughCasesInSwitch": true,
+		"noPropertyAccessFromIndexSignature": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"strict": true,
+
+		// Modules
+		"module": "nodenext",
+		"resolveJsonModule": true,
+		"typeRoots": ["node_modules/@types", "src/types"],
+
+		// Emit
+		"declaration": true,
+		"declarationDir": "build/types",
+		// "declarationMap": true,
+		"outDir": "build",
+
+		// JavaScript Support
+		"allowJs": true,
+
+		// Interop Constraints
+		"isolatedModules": true,
+		"verbatimModuleSyntax": true,
+
+		// Language and Environment
+		"lib": ["ESNext", "DOM"],
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+
+		// Completeness
+		// "skipLibCheck": true,
+	},
+	"include": [
+		"src/**/*"
+	]
+}
