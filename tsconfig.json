@@ -29,12 +29,10 @@
 		// Language and Environment
 		"lib": ["ESNext", "DOM"],
 		"target": "ESNext",
-		"useDefineForClassFields": true,
+		"useDefineForClassFields": true
 
 		// Completeness
 		// "skipLibCheck": true,
 	},
-	"include": [
-		"src/**/*"
-	]
+	"include": ["src/**/*"]
 }
