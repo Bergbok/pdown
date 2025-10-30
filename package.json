@@ -1,50 +1,63 @@
 {
-    "name": "pdown",
-    "type": "module",
-    "version": "1.0.0",
-    "license": "AGPL-3.0-only",
-    "description": "Command-line tool for downloading files from Proton Drive",
-    "keywords": [
-        "cli",
-        "downloader",
-        "privacy",
-        "proton drive",
-        "proton",
-        "puppeteer",
-        "typescript"
-    ],
-    "author": {
-        "name": "Bergbok",
-        "url": "https://github.com/Bergbok"
-    },
-    "repository": "github:Bergbok/pdown",
-    "homepage": "https://github.com/Bergbok/pdown",
-    "bugs": "https://github.com/Bergbok/pdown/issues",
-    "files": ["cli.js", "pdown.js", "selectors.js", "pdown.d.ts"],
-    "types": "pdown.d.ts",
-    "main": "pdown.js",
-    "bin": "cli.js",
-    "scripts": {
-        "build": "rm -r build; tsc",
-        "watch": "tsc --watch",
-        "postpack": "rm *.js *.d.ts",
-        "prepack": "cp build/types/src/pdown.d.ts . && cp build/src/* . && sed -i 's|../package.json|./package.json|g' cli.js"
-    },
-    "dependencies": {
-        "chalk": "^5.6.2",
-        "cli-progress": "^3.12.0",
-        "cli-table3": "^0.6.5",
-        "commander": "^14.0.2",
-        "mime-db": "^1.54.0",
-        "netscape-cookies-parser2": "^1.0.3",
-        "puppeteer": "^24.26.1",
-        "terminal-link": "^5.0.0",
-        "winston": "^3.18.3"
-    },
-    "devDependencies": {
-        "@commander-js/extra-typings": "^14.0.0",
-        "@types/cli-progress": "^3.11.6",
-        "@types/mime-db": "^1.43.6",
-        "typescript": "^5.9.3"
-    }
+	"name": "pdown",
+	"type": "module",
+	"version": "1.0.0",
+	"license": "AGPL-3.0-only",
+	"description": "Command-line tool for downloading files from Proton Drive",
+	"keywords": [
+		"cli",
+		"downloader",
+		"privacy",
+		"proton drive",
+		"proton",
+		"puppeteer",
+		"typescript"
+	],
+	"author": {
+		"name": "Bergbok",
+		"url": "https://github.com/Bergbok"
+	},
+	"repository": "github:Bergbok/pdown",
+	"homepage": "https://github.com/Bergbok/pdown",
+	"bugs": "https://github.com/Bergbok/pdown/issues",
+	"files": [
+		"cli.js",
+		"pdown.js",
+		"selectors.js",
+		"pdown.d.ts"
+	],
+	"types": "pdown.d.ts",
+	"main": "pdown.js",
+	"bin": "cli.js",
+	"simple-git-hooks": {
+		"pre-commit": "bun pretty-quick --staged"
+	},
+	"scripts": {
+		"build": "rm -r build; tsc",
+		"watch": "tsc --watch",
+		"postpack": "rm *.js *.d.ts",
+		"prepack": "cp build/types/src/pdown.d.ts . && cp build/src/* . && sed -i 's|../package.json|./package.json|g' cli.js",
+		"prettier": "prettier --write ."
+	},
+	"dependencies": {
+		"chalk": "^5.6.2",
+		"cli-progress": "^3.12.0",
+		"cli-table3": "^0.6.5",
+		"commander": "^14.0.2",
+		"mime-db": "^1.54.0",
+		"netscape-cookies-parser2": "^1.0.3",
+		"puppeteer": "^24.26.1",
+		"terminal-link": "^5.0.0",
+		"winston": "^3.18.3"
+	},
+	"devDependencies": {
+		"@bergbok/prettier-config": "^1.0.1",
+		"@commander-js/extra-typings": "^14.0.0",
+		"@types/cli-progress": "^3.11.6",
+		"@types/mime-db": "^1.43.6",
+		"prettier": "^3.6.2",
+		"pretty-quick": "^4.2.2",
+		"simple-git-hooks": "^2.13.1",
+		"typescript": "^5.9.3"
+	}
 }
