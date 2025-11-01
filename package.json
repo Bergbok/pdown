@@ -46,6 +46,8 @@
 		"commander": "^14.0.2",
 		"mime-db": "^1.54.0",
 		"netscape-cookies-parser2": "^1.0.3",
+		"ora": "^9.0.0",
+		"parse-json": "^8.3.0",
 		"puppeteer": "^24.26.1",
 		"terminal-link": "^5.0.0",
 		"winston": "^3.18.3"
@@ -58,6 +60,7 @@
 		"prettier": "^3.6.2",
 		"pretty-quick": "^4.2.2",
 		"simple-git-hooks": "^2.13.1",
+		"tiny-typed-emitter": "^2.1.0",
 		"typescript": "^5.9.3"
 	}
 }
