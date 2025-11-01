@@ -15,7 +15,7 @@
         "winston": "^3.18.3",
       },
       "devDependencies": {
-        "@bergbok/prettier-config": "^1.0.1",
+        "@bergbok/prettier-config": "^1.1.0",
         "@commander-js/extra-typings": "^14.0.0",
         "@types/cli-progress": "^3.11.6",
         "@types/mime-db": "^1.43.6",
@@ -31,7 +31,7 @@
 
     "@babel/helper-validator-identifier": ["@babel/helper-validator-identifier@7.27.1", "", {}, "sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow=="],
 
-    "@bergbok/prettier-config": ["@bergbok/prettier-config@1.0.1", "", { "peerDependencies": { "prettier": ">=3.0.0" } }, "sha512-gKiHrK0HBjJmGWhjwb8rH7oaa6InzcFxZx+b00TCP/3aoElqZtJsq+dijjXuoteL/E9euKdV+TKQghsOgUL4tg=="],
+    "@bergbok/prettier-config": ["@bergbok/prettier-config@1.1.0", "", { "peerDependencies": { "prettier": ">=3.0.0" } }, "sha512-dmLTJFxEkTCLE0plBgEWdwgb1nL4PAyalsQhgrTc57pllqjDz0f095JXDyAFACwrzmQiCJhLpWqGDpYPQJs7zA=="],
 
     "@colors/colors": ["@colors/colors@1.5.0", "", {}, "sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ=="],
 

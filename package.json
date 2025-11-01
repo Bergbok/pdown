@@ -51,7 +51,7 @@
 		"winston": "^3.18.3"
 	},
 	"devDependencies": {
-		"@bergbok/prettier-config": "^1.0.1",
+		"@bergbok/prettier-config": "^1.1.0",
 		"@commander-js/extra-typings": "^14.0.0",
 		"@types/cli-progress": "^3.11.6",
 		"@types/mime-db": "^1.43.6",
