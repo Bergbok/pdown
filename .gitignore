@@ -1,6 +1,7 @@
 /api/
 /artifacts/
 /build/
+/coverage/
 /dist/
 /downloads/
 /node_modules/
