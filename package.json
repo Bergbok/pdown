@@ -21,9 +21,7 @@
 	"homepage": "https://github.com/Bergbok/pdown",
 	"bugs": "https://github.com/Bergbok/pdown/issues",
 	"files": [
-		"cli.js",
-		"pdown.js",
-		"selectors.js",
+		"*.js",
 		"pdown.d.ts"
 	],
 	"types": "pdown.d.ts",
@@ -37,7 +35,8 @@
 		"watch": "tsc --watch",
 		"postpack": "rm *.js *.d.ts",
 		"prepack": "cp build/types/src/pdown.d.ts . && cp build/src/* . && sed -i 's|../package.json|./package.json|g' cli.js",
-		"prettier": "prettier --write ."
+		"prettier": "prettier --write .",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"chalk": "^5.6.2",
@@ -61,7 +60,7 @@
 		"prettier": "^3.6.2",
 		"pretty-quick": "^4.2.2",
 		"simple-git-hooks": "^2.13.1",
-		"tiny-typed-emitter": "^2.1.0",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.6"
 	}
 }
