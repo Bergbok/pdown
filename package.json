@@ -50,6 +50,7 @@
 		"parse-json": "^8.3.0",
 		"puppeteer": "^24.26.1",
 		"terminal-link": "^5.0.0",
+		"tiny-typed-emitter": "^2.1.0",
 		"winston": "^3.18.3"
 	},
 	"devDependencies": {
