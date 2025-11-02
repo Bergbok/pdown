@@ -1,0 +1,113 @@
+name: Publish
+run-name: Publish ${{ github.ref_name }}
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2.0.2
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      - name: Run tests
+        run: bun run test
+
+      - name: Pack
+        run: bun pm pack
+
+      - name: Upload build archive
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: build
+          path: pdown-*.tgz
+  npm:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v5.0.0
+        with:
+          name: build
+          path: build
+
+      - uses: actions/setup-node@v6.0.0
+        with:
+          node-version: '*'
+          registry-url: https://registry.npmjs.org
+
+      # Ensure npm 11.5.1 or later is installed to enable trusted publishing
+      # https://docs.npmjs.com/trusted-publishers
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Publish
+        run: npm publish ./build/pdown-*.tgz
+  github-packages:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v5.0.0
+        with:
+          name: build
+          path: build
+
+      - uses: actions/setup-node@v6.0.0
+        with:
+          node-version: '*'
+          registry-url: https://npm.pkg.github.com
+
+      - name: Publish
+        run: npm publish ./build/pdown-*.tgz
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  github-release:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v5.0.0
+        with:
+          name: build
+          path: build
+
+      - name: Release
+        uses: softprops/action-gh-release@v2.4.1
+        with:
+          name: '${{ github.ref_name }}'
+          prerelease: ${{ startsWith(github.ref_name, 'v0.') }}
+          files: build/pdown-*.tgz
+          fail_on_unmatched_files: true
+          make_latest: true
