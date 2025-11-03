@@ -54,7 +54,23 @@ jobs:
           name: build
           path: build
 
-      - uses: actions/setup-node@v6.0.0
+      - name: Check remote
+        id: check_remote
+        run: |
+          cd build || exit 1
+          tar -xzf pdown-*.tgz
+          VERSION=${GITHUB_REF_NAME#v}
+          if npm add "pdown@${VERSION}" >/dev/null 2>&1; then
+            echo "exists=true" > $GITHUB_OUTPUT
+            echo "Version ${VERSION} of pdown is already published to npm. Skipping."
+          else
+            echo "exists=false" > $GITHUB_OUTPUT
+            echo "Version ${VERSION} of pdown is not published yet."
+          fi
+
+      - name: Setup node
+        uses: actions/setup-node@v6.0.0
+        if: steps.check_remote.outputs.exists == 'false'
         with:
           node-version: '*'
           registry-url: https://registry.npmjs.org
@@ -62,9 +78,11 @@ jobs:
       # Ensure npm 11.5.1 or later is installed to enable trusted publishing
       # https://docs.npmjs.com/trusted-publishers
       - name: Update npm
+        if: steps.check_remote.outputs.exists == 'false'
         run: npm install -g npm@latest
 
       - name: Publish
+        if: steps.check_remote.outputs.exists == 'false'
         run: npm publish ./build/pdown-*.tgz
   github-packages:
     needs: [build]
@@ -73,22 +91,46 @@ jobs:
       id-token: write
       packages: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-
       - name: Download build artifact
         uses: actions/download-artifact@v5.0.0
         with:
           name: build
           path: build
 
-      - uses: actions/setup-node@v6.0.0
+      - name: Check remote
+        id: check_remote
+        run: |
+          cd build || exit 1
+          tar -xzf pdown-*.tgz
+          VERSION=${GITHUB_REF_NAME#v}
+          if npm add "pdown@${VERSION}" --registry https://npm.pkg.github.com >/dev/null 2>&1; then
+            echo "exists=true" > $GITHUB_OUTPUT
+            echo "Version ${VERSION} of pdown is already published to GitHub Packages. Skipping."
+          else
+            echo "exists=false" > $GITHUB_OUTPUT
+            echo "Version ${VERSION} of pdown is not published yet."
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup node
+        uses: actions/setup-node@v6.0.0
+        if: steps.check_remote.outputs.exists == 'false'
         with:
           node-version: '*'
           registry-url: https://npm.pkg.github.com
 
       - name: Publish
-        run: npm publish ./build/pdown-*.tgz
+        if: steps.check_remote.outputs.exists == 'false'
+        run: |
+          npm config set registry=https://npm.pkg.github.com
+          cd build
+          tar -xzf pdown-*.tgz
+          cd package
+          npm pkg delete scripts.prepack
+          npm pkg delete scripts.postpack
+          npm pkg set name="@${GITHUB_REPOSITORY_OWNER}/pdown"
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   github-release:
