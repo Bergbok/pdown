@@ -1,6 +1,6 @@
 <div align='center'>
 	<h1>pdown</h1>
-	<p><b><a href=''>Proton Drive</a> file downloader</b></p>
+	<p><b><a href='https://proton.me/drive'>Proton Drive</a> file downloader</b></p>
 	<img src='https://i.imgur.com/PzHGN1J.png' width='80%'>
 	<br>
 	<br>
@@ -170,7 +170,7 @@ Files have to be shared publically and item password needs to be provided if set
 <div align='center'>
 	<picture>
 		<a href='https://drive.proton.me/urls/65PCM21WW8#CxaogwECfsqg'>
-			<img src='https://i.imgur.com/1aPtn7l.png' height='178' width='623'>
+			<img src='https://i.imgur.com/1aPtn7l.png'>
 		</a>
 	</picture>
 </div>
