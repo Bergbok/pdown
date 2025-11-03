@@ -11,7 +11,7 @@ import terminalLink from 'terminal-link';
 import parseJson, { JSONError } from 'parse-json';
 import packageJSON from '../package.json' with { type: 'json' };
 import { Command, Option } from 'commander';
-import { logger, fileTransport } from './logger.js';
+import { createFileTransport, logger } from './logger.js';
 import { MultiBar, Presets, SingleBar } from 'cli-progress';
 import { formatBytes, formatFilename, formatProgress, formatSpeed, uncolorize, unlink } from './formatters.js';
 import type { DownloadCommandOptions, ListCommandOptions, SizeFormatOptions } from './types/cli.js';
@@ -63,6 +63,7 @@ class RootCommand extends Command {
 			cmd.on(event, () => {
 				logger.info(chalk.blue('Debug mode enabled'));
 				logger.level = 'debug';
+				const fileTransport = createFileTransport();
 				if (!logger.transports.includes(fileTransport)) {
 					logger.add(fileTransport);
 				}
