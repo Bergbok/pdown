@@ -8,35 +8,38 @@
 
 <div align='center'>
 	<picture>
-		<a href="https://www.npmjs.com/package/pdown">
-			<img src="https://img.shields.io/npm/v/pdown?logo=npm&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat">
+		<a href='https://proton.me/drive'>
+			<img src='https://img.shields.io/badge/proton-drive-purple?logo=protondrive&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat'>
 		</a>
 	</picture>
 	<picture>
-		<a href="https://github.com/Bergbok/pdown">
-			<img src="https://img.shields.io/github/package-json/v/Bergbok/pdown?logo=refinedgithub&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat&label=github">
+		<a href='https://github.com/Bergbok/pdown'>
+			<img src='https://img.shields.io/github/package-json/v/Bergbok/pdown?logo=refinedgithub&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat&label=github'>
 		</a>
 	</picture>
 	<picture>
-		<a href="https://proton.me/drive">
-			<img src="https://img.shields.io/badge/proton-drive-purple?logo=protondrive&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat">
+		<a href='https://www.npmjs.com/package/pdown'>
+			<img src='https://img.shields.io/npm/v/pdown?logo=npm&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat'>
 		</a>
 	</picture>
 	<picture>
-		<a href="https://www.npmjs.com/package/pdown">
-			<img src="https://img.shields.io/npm/d18m/pdown?logo=npm&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat&label=downloads%20(18%20months)">
+		<a href='https://www.npmjs.com/package/pdown'>
+			<img src='https://img.shields.io/npm/d18m/pdown?logo=npm&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat&label=downloads%20(18%20months)'>
 		</a>
 	</picture>
 	<picture>
-		<a href="https://github.com/Bergbok/pdown">
-			<img src="https://img.shields.io/github/stars/Bergbok/pdown?logo=refinedgithub&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat">
+		<a href='https://github.com/Bergbok/pdown'>
+			<img src='https://img.shields.io/github/stars/Bergbok/pdown?logo=refinedgithub&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat'>
 		</a>
 	</picture>
-</div>
+	<picture>
+		<a href='https://github.com/Bergbok/pdown/actions/workflows/test.yml'>
+			<img src='https://img.shields.io/github/actions/workflow/status/Bergbok/pdown/test.yml?logo=vitest&color=6d4aff&logoColor=d5a4ff&labelColor=16141c&style=flat&label=tests'>
+		</a>
+	</picture>
+</div><br>
 
-<p align='center'>
-	Uses browser automation via <a href='https://github.com/puppeteer/puppeteer'>Puppeteer</a>. Will be rewritten to use <a href='https://proton.me/blog/proton-drive-sdk-preview'>Proton's Drive SDK</a> once it's stable and has docs.
-</p>
+Uses browser automation via [Puppeteer](https://github.com/puppeteer/puppeteer). Will be rewritten to use [Proton's Drive SDK](https://proton.me/blog/proton-drive-sdk-preview) once it's stable and has docs.
 
 ### Installation
 
@@ -134,7 +137,7 @@ $ cat ~/Downloads/example.txt
 $ pdown Y5J2AT9QJ0#HjVxIlCjfd99 --password 'love' --quiet
 
 # download multiple shares concurrently using SI measurements - https://www.bipm.org/en/measurement-units/si-prefixes
-$ pdown KGER0RS624#LzmiMIuikOuj 65PCM21WW8#CxaogwECfsqg --si
+$ pdown KGER0RS624#LzmiMIuikOuj 65PCM21WW8#CxaogwECfsqg --si --speed 1500
 pdown.zip            |████████████████████████▒░░░░░░|  81% | 12.39M /  15.29M | 1.50M/s
 cool video.mp4       |█▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░|   3% | 13.64M / 362.08M | 1.50M/s
 
