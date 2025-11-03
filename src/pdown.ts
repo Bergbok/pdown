@@ -111,9 +111,18 @@ export default class PDown extends TypedEmitter<PDownEvents> {
 
 		if (this.downloadPath) {
 			const client = await page.createCDPSession();
-			await client.send('Page.setDownloadBehavior', {
+			await client.send('Browser.setDownloadBehavior', {
 				behavior: 'allow',
+				eventsEnabled: true,
 				downloadPath: this.downloadPath
+			});
+
+			client.on('Browser.downloadProgress', async (event) => {
+				if (event.state === 'completed') {
+					this.logger.debug('Download complete, closing browser\r');
+					await new Promise((resolve) => setTimeout(resolve, 1000));
+					await this.exit(browser);
+				}
 			});
 		}
 
@@ -372,9 +381,9 @@ export default class PDown extends TypedEmitter<PDownEvents> {
 
 		return await Promise.allSettled(
 			[...urls].map(async (url) => {
-				const browser = await this.createBrowser();
 				const shareID = url.match(shareIDRegex)?.[0]!;
-				let page = await this.createPage(browser);
+				const browser = await this.createBrowser();
+				const page = await this.createPage(browser);
 
 				try {
 					this.logger.debug(`[${shareID}] Navigating to page`);
@@ -387,11 +396,8 @@ export default class PDown extends TypedEmitter<PDownEvents> {
 					await page.locator(selectors.shareDownloadButton).setTimeout(20000).click();
 					await this.waitForDownload(page);
 				} catch (error) {
-					return Promise.reject(error);
-				} finally {
-					await page.close();
-					await new Promise((resolve) => setTimeout(resolve, 2500));
 					await this.exit(browser);
+					return Promise.reject(error);
 				}
 			})
 		);
@@ -405,7 +411,7 @@ export default class PDown extends TypedEmitter<PDownEvents> {
 			[...urls].map(async (url) => {
 				const shareID = url.match(shareIDRegex)?.[0]!;
 				const visited = new Set<string>();
-				let page = await this.createPage(browser);
+				const page = await this.createPage(browser);
 				let files: FileInfo;
 				let shareInfo: ShareInfoAPIResponse | undefined;
 				let folderInfo: FolderInfoAPIResponse | undefined;
