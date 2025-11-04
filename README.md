@@ -39,7 +39,8 @@
 	</picture>
 </div><br>
 
-Uses browser automation via [Puppeteer](https://github.com/puppeteer/puppeteer). Will be rewritten to use [Proton's Drive SDK](https://proton.me/blog/proton-drive-sdk-preview) once it's stable and has docs.
+Uses browser automation via [Puppeteer](https://github.com/puppeteer/puppeteer).  
+Will be rewritten to use [Proton's Drive SDK](https://proton.me/blog/proton-drive-sdk-preview) once it's stable and has docs.
 
 ### Installation
 
