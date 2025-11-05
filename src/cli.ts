@@ -32,7 +32,7 @@ class RootCommand extends Command {
 		cmd.addOption(
 			new Option(
 				'--puppeteerOptions <OPTIONS>',
-				`options to pass to Puppeteer (JSON) - ${terminalLink('docs', 'https://pptr.dev/api/puppeteer.launchoptions)')}`
+				`options to pass to Puppeteer (JSON) - ${terminalLink('docs', 'https://pptr.dev/api/puppeteer.launchoptions')}`
 			).argParser((value: string) => {
 				try {
 					return parseJson(value, '--puppeteerOptions') as LaunchOptions;
