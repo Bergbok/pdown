@@ -23,7 +23,7 @@ const purple = chalk.hex('#6D4AFF');
 class RootCommand extends Command {
 	createCommand(name: string) {
 		const cmd = new Command(name);
-		cmd.usage('[options] <URL/ID...>');
+		cmd.usage('<URL/ID...> [options]');
 		cmd.optionsGroup('Global Options:');
 		cmd.addOption(new Option('-c, --cookies <FILE>', 'path to a Netscape cookie file'));
 		cmd.addOption(new Option('-d, --debug', 'show more informations and write log to ./pdown.log').env('DEBUG').implies({ verbose: true }));
@@ -98,6 +98,14 @@ program
 const argument = program
 	.createArgument('[URL/ID...]', 'Proton Drive shares to process')
 	.argParser((value: string, previous: Set<string> = new Set()) => {
+		if (value === 'dl' || value === 'download') return previous;
+
+		if (value === 'ls' || value === 'list') {
+			logger.error(chalk.redBright('Options need to go after commands.'));
+			logger.error(chalk.redBright('Try: pdown ls <URL/ID> [options]'));
+			process.exit(1);
+		}
+
 		switch (true) {
 			case value.length >= 23 && /^\w{10}#\w{12}$/.test(value.slice(-23)):
 				return previous.add(`https://drive.proton.me/urls/${value.slice(-23)}`);
@@ -128,9 +136,9 @@ const colorSpinner = () => {
 process.on('exit', () => spinner.stop());
 process.on('unhandledRejection', () => spinner.stop());
 
-const assertNonEmptySet = <T>(set: Set<T>) => {
-	if (!set?.size) {
-		console.error('At least one valid URL/ID is required.');
+const assertNonEmptySet = (set: Set<string>) => {
+	if (!set.size) {
+		logger.error(chalk.redBright('At least one valid URL/ID is required.'));
 		process.exit(1);
 	}
 };
