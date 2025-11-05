@@ -1,7 +1,7 @@
 {
 	"name": "pdown",
 	"type": "module",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"license": "AGPL-3.0-only",
 	"description": "Command-line tool for downloading files from Proton Drive",
 	"keywords": [
