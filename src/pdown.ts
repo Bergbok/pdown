@@ -43,8 +43,8 @@ export interface PDownEvents {
 	downloadcomplete: (event: { shareID: string }) => void;
 	downloadprogress: (event: { shareID: string; filename: string; progress: number; size: number; speed?: number }) => void;
 	downloadstart: (event: { shareID: string; filename: string; size: number }) => void;
-	loadstart: () => void;
 	loadcomplete: () => void;
+	loadstart: () => void;
 }
 
 export default class PDown extends TypedEmitter<PDownEvents> {
