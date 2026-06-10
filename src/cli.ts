@@ -101,9 +101,14 @@ const argument = program
 		if (value === 'dl' || value === 'download') return previous;
 
 		if (value === 'ls' || value === 'list') {
-			logger.error(chalk.redBright('Options need to go after commands.'));
+			logger.error(chalk.redBright('Options need to go after commands.\n'));
 			logger.error(chalk.redBright('Try: pdown ls <URL/ID> [options]'));
 			process.exit(1);
+		}
+
+		if (value === 'help') {
+			program.outputHelp();
+			process.exit(0);
 		}
 
 		switch (true) {
