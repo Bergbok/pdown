@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> Use [Proton's official CLI](https://proton.me/blog/proton-drive-cli) instead.
+
 <div align='center'>
 	<h1>pdown</h1>
 	<p><b><a href='https://proton.me/drive'>Proton Drive</a> file downloader</b></p>
